@@ -17,7 +17,7 @@ int main(){
 }
 */
 /*
-void main(){
+int main(){
 
     //std::ostringstream oss("Ito-En Green Tea"); 
     ostringstream oss("Ito-En Green Tea", ostringstream::ate);  // new oss write at the end of this string, rather than overwrite this one
@@ -27,10 +27,11 @@ void main(){
     oss << 16.9 << " Ounces "; 
     cout << oss.str() << endl;
 
+    return 0;
 }
 */
 /*
-void main(){
+int main(){
 
     istringstream iss("16.9 Ounces");
     double amount;
@@ -45,6 +46,7 @@ void main(){
     // returns "8 .9" when amount is int, returns "8.45 Ounces" when amount is double
     cout << amount/2 << " " << unit << endl; 
 
+    return 0;
 }
 */
 
@@ -81,9 +83,10 @@ void stringToIntegerTest(){
     }
 }
 
-void main(){
+int main(){
     stringToIntegerTest();
-    
+
+    return 0;
 }
 
 
