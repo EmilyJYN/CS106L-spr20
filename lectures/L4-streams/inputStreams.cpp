@@ -1,6 +1,6 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
+#include <fstream> //file stream
+#include <sstream> //string stream
 
 using std::cout; 	using std::endl;
 using std::string;	using std::cin;
