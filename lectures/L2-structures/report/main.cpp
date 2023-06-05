@@ -2,6 +2,7 @@
 #include <utility>
 #include <vector>
 #include <math.h>
+#include <sstream>
 
 // report_lines function:
 // prompts the user to type in lines of text
