@@ -7,7 +7,7 @@ using std::cout;  using std::cin;  using std::endl; using std::cerr;
 
 string prompUserFile(ifstream& stream, 
                      string prompt ="Please enter a file name: ", 
-                     string reprompt = "Invalid file name, please re-enter a file name: ");
+                     string reprompt = "Invalid file name, please re-enter a file name. ");
 
 /* Write the following function which 
 prompts the user for a filename, opens the ifstream to the file,
@@ -25,6 +25,7 @@ string prompUserFile(ifstream& stream, string prompt, string reprompt){
             stream.open(filename); //open file
             if (stream) return filename; // if stream's fail bit is not on
         }
+        cerr << reprompt << endl;
     }
     
 }
