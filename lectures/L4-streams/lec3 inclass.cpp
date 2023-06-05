@@ -22,19 +22,24 @@ void badWelcomeProgram();
 int getInteger(const string& prompt = "Enter an integer: ",
                const string& reprompt = "Illegal numeric format. Try again.");
 
+// why not using cin here?
+// because when using cin, if something more than expected is typed in, ex. 12 13
+// it will store the whole line, while only use the first token (12)
+// when we use cin the next time, it will directly extract the leftover (13) rather than the actual input
+// In my opinion, just don't use cin for future convenience
 int getInteger(const string& prompt,
                const string& reprompt) {
-    while (true) {
-        cout << prompt;
+    while (true) { //while nothing is returned
+        cout << prompt; //print "What is your age? "
         string line;
-        if (!getline(cin, line)) {
+        if (!getline(cin, line)) { //getline(), if failed, error message
             throw std::domain_error("getLine: End of input reached while waiting for line.");
         }
-        istringstream iss(line);
+        istringstream iss(line); //convert line to an input string stream
         int value; char extra;
-        //if true, iss start with an integer and nothing more is appended.
-        //if not ture, back to getline()
+        //if true, iss start with an integer and nothing more is appended, return value and break the while loop.
         if (iss >> value && !(iss >> extra)) return value;
+        //if not ture, prompt error message, and go back to top, print "What is your age? " again
         cerr << reprompt << endl;
     }
 }
