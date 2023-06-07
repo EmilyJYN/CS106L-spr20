@@ -66,26 +66,29 @@ int main(){
 
 
 // value reference pointer const
-//auto关键字并不会保留reference（&）或const属性，但是可以推导出pointer（*）
-//本质上是由于，reference（&）或const属性不能重新赋值，而地址只能赋值给pointer
+//auto关键字不保留等号右边的reference（&）属性
+//当类型为 ref 或 pointer 时，auto 的推导结果将保留表达式的 const 属性, 否则不保留。（copy3，copy4）
+//auto可以推导出pointer，也可以直接定义auto*（等号右边为内存地址时）（p1，p2）
 int main(){
 
-    std::vector<int> vec{1, 2, 3};
-    const std::vector<int> c_vec{7, 8};
+    vector<int> vec{1, 2, 3};
+    const vector<int> c_vec{7, 8};
 
-    const std::vector<int>& c_ref = vec; //c_ref = const ref to vector, 不能通过它来修改所引用的向量的内容
+    const vector<int>& c_ref = vec; //c_ref = const ref to vector, 不能通过它来修改所引用的向量的内容
     auto copy1 = c_ref; // copy1 = vector, c_ref = const ref to vector
     const auto copy2 = c_ref; // copy2 = const vector, c_ref = const ref to vector
+    auto& copy3 = c_ref; //copy3 = const ref to vector, 
+    auto* copy4 = &c_ref; //copy4 = const pointer to vector
 
-    std::vector<int>& ref = vec; // ref = ref to vector
+    vector<int>& ref = vec; // ref = ref to vector
     auto& a_ref = ref; // a_ref = ref to (ref to vec)= ref to vec, a_ref 和 ref 完全等价
     const auto& c_aref = ref; // c_aref = const ref to (ref to vec) = const ref to vec
 
     int  x = 0;
-    auto *p1 = &x; //这里定义的是p1，p1 = 指针 = int* = 内存地址 = &x 。对p1进行解引用，*p1 = x = int。 
-    auto  p2 = &x; //p2 = &x = 内存地址 = 指针  = int*
+    auto* p1 = &x; //这里定义的是p1，p1 = 指针 = int* = 内存地址 = &x 。对p1进行解引用，*p1 = x = int。 
+    auto p2 = &x; //p2 = &x = 内存地址 = 指针  = int*
     auto p3 = *p1; //对p1解引用，获得x
-    //auto p4 = *x; //不对，解引用操作符（*）只能用在pointer上，而x是int
+    //auto p4 = *x; //不对，解引用符（*）只能用在pointer上，而x是int
     //auto *p5 = x; //不对，因为*p5（指针）需要存储一个内存地址，而 x 是int
     auto& p6 = p1; //p6 = int*&，是pointer p1的reference
     auto* p7 = &p6; //p7 = int**，因为auto不保留reference
