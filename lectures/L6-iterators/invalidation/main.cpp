@@ -3,6 +3,7 @@
 #include <tuple>        // for tuple
 #include <array>        // for array
 #include <vector>       // for vector
+#include <deque>       // for deque
 #include <fstream>      // for ifstream
 #include <sstream>      // for istringstream
 #include <iomanip>      // for setprecision
