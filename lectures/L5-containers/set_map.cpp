@@ -26,9 +26,13 @@ int main(){
     studs.insert({2,"Bob"}); //map is ordered by keys
 
     auto iter = studs.begin();
-    while (iter != studs.end()){
+    /*while (iter != studs.end()){
         std::cout << (*iter).first << (*iter).second << " "; //括号一定要加
         ++iter;
+    }*/
+    //using range-based for loop
+    for(auto elem : studs){
+        std::cout << elem.first << elem.second << " "; //括号一定要加
     }
     //printed 1Alice 2Bob 3Charlie 
     return 0;
