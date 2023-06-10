@@ -17,7 +17,7 @@ int main() {
     // Goal: solve the following five questions with five calls to the same function
     std::vector<int> vec{5, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 5};
     std::list<double> list{4.7, 3, 4, 3.7, 4.7, 2.9, 4.7};
-    std::string s{"Hello world!"}
+    std::string s{"Hello world!"};
 
     // Count how many times 3 appears in a vector<int> (answer is 10)
     count_occurences(vec.begin(), vec.end(), 3);

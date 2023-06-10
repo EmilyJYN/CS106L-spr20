@@ -27,8 +27,8 @@ int getInteger(const string& prompt = "Enter an integer: ",
 // it will store the whole line, while only use the first token (12)
 // when we use cin the next time, it will directly extract the leftover (13) rather than the actual input
 // In my opinion, just don't use cin for future convenience
-int getInteger(const string& prompt,
-               const string& reprompt) {
+int getInteger(const string& prompt = "Enter an integer: ",
+               const string& reprompt = "Illegal numeric format. Try again.") {
     while (true) { //while nothing is returned
         cout << prompt; //print "What is your age? "
         string line;
