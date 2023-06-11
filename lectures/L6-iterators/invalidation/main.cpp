@@ -39,7 +39,7 @@ void erase_elem(std::deque<int>& d, int val) {
 
 int main() {
     std::deque<int> d{3, 1, 4, 1, 5, 3, 3, 3, 4, 1, 1, 3};
-    // erase_elem_bad(d, 3); // try uncommenting this and see what happens
+    //erase_elem_bad(d, 3); // try uncommenting this and see what happens
     erase_elem(d, 3);
     print_deque(d);
 }
