@@ -28,10 +28,10 @@ int countOccurences(InputIterator begin, InputIterator end, UnaryPredicate predi
     }
     return count;
 }
-
+/*
 bool isLessThan5(int val){
     return val < 5;
-}
+}*/
 
 int main(){
     vector<int> vec{1,3,5,7,9};
@@ -45,7 +45,7 @@ int main(){
     //cout << "Occurence of # less than 5: ";
     //cout << countOccurences(vec.begin(), vec.end(), isLessThan5) << endl; //isLessThan5不加()，否则报错
     cout << "Occurence of # less than 5: ";
-    cout << countOccurences(vec.begin(), vec.end(), isLessThanLimit) << endl; //isLessThan5不加()，否则报错
+    cout << countOccurences(vec.begin(), vec.end(), isLessThanLimit) << endl;
     cout << "Occurence of # less than 5 in second half: ";
     cout << countOccurences(vec.begin()+vec.size()/2, vec.end(), isLessThanLimit) << endl; 
 
