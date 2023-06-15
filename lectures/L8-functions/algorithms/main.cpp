@@ -5,7 +5,7 @@
 #include <deque>
 #include <algorithm>
 #include <iostream>
-#include <iterator>
+#include <iterator> // back_inserter
 #include <iomanip>
 #include <random>
 
@@ -74,19 +74,39 @@ int main() {
     // Fun with algorithms.
     auto courses = readCourses();
     auto numbers = readNumbers();
-
+/*
+    // sorrt by rating
     std::sort(numbers.begin(), numbers.end());
 
-    // given two courses, return true if the left course is less than the right course, false otherwise
-    // course1 < course2 if course1's rating is less than course2's rating
-    auto course_less_than = [](const auto& c1, const auto& c2) {
-        return c1.name < c2.name;
+    // sort by name
+    //lambda functions usually placed inside main() function
+    auto course_less_than = [](const auto& c1, const auto& c2) { //c1代表排序后前面的元素，c2代表后面的元素
+        return c1.name < c2.name; //这行代码的意思是，排序时，前面元素的name应该小于后面元素的name
     };
-    std::sort(courses.begin(), courses.end(), course_less_than);
+    std::sort(courses.begin(), courses.end(), course_less_than); // in sort, predicate tells how to compare the 
+*/   
+    std::string department = "CS";
+    auto isDep = [department](auto element){
+        return element.name.size() > 2 && element.name.substr(0,2) == department;
+    };
+/*
+    // move CS courses to the front, others at the end
+    std::stable_partition(courses.begin(),courses.end(),isDep);
 
+    std::vector<Course> csCourses;
+    // copy courses to csCourses if they are CS courses
+    std::copy_if(courses.begin(), courses.end(),back_inserter(csCourses), isDep);
+*/
+    std::cout << courses.size() << std::endl;
+    // erase-remove idiom
+    courses.erase(std::remove_if(courses.begin(),courses.end(),isDep),courses.end());
+
+    //courses中每个元素打印到cout中，用换行隔开
     std::copy(courses.begin(), courses.end(),
               std::ostream_iterator<Course>(std::cout, "\n"));
+    
+    std::cout << courses.size() << std::endl;
 
-    // FILL IN YOUR CODE HERE
+    return 0;
 }
 
