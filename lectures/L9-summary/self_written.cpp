@@ -40,7 +40,7 @@ const vector<string> FEATURE_VEC{"a", "about", "above", "after", "again", "again
                                  "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours",
                                  "yourself", "yourselves", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+",
                                  ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_",
-                                 "`", "{", "|", "}", "~"};
+                                 "`", "{", "|", "}", "~"}; // 用 c string 初始化，转化为了std::string
 
 //conver words in file to countable format
 //删除了标点符号和\n，全换成小写
@@ -48,11 +48,16 @@ string convertWords(ifstream& filename){
     string ret;
     string line;
     while(std::getline(filename, line)){
-        //删除标点符号，使用unsigned char避免数据类型问题
-        line.erase(std::remove_if(line.begin(),line.end(),[](unsigned char ch) { return std::ispunct(ch); }),line.end()); 
-        //换成小写，使用unsigned char避免数据类型问题
-        std::transform(line.begin(),line.end(), line.begin(), [](unsigned char ch) { return std::tolower(ch); }); 
-        ret += line + " "; // \n换成空格
+        //标点符号前加空格，将所有char换成小写unsigned char。使用unsigned char避免数据类型问题
+        string newLine;
+        for(char ch : line){
+            std::tolower(ch);
+            if(std::ispunct(static_cast<unsigned char>(ch))){
+                newLine += " ";
+            }
+            newLine += ch;
+        }
+        ret += newLine + " "; // \n换成空格
     }
     return ret;
 }
@@ -106,6 +111,7 @@ int main(){
     ifstream unknown_fs("res/unknown.txt");
 
     //cout << convertWords(hamilton_fs) << endl;
+    
     vector<int> vec_unknown = fileToVec(unknown_fs);
     vector<int> vec_hamilton = fileToVec(hamilton_fs);
 
