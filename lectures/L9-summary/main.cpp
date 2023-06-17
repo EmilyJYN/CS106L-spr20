@@ -4,6 +4,7 @@
  */
 
 #include <iostream>
+#include <string>
 #include <vector>
 #include <fstream>
 #include <algorithm>
@@ -36,12 +37,12 @@ const vector<string> FEATURE_VEC{"a", "about", "above", "after", "again", "again
                                  ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_",
                                  "`", "{", "|", "}", "~"};
 
-
+//所有字符换成小写，并将换行符换成了空格
 string fileToString(ifstream& file) {
     string ret = "";
 	string line;
 	while (getline(file, line)) {
-		std::transform(line.begin(), line.end(), line.begin(), tolower);	
+		std::transform(line.begin(), line.end(), line.begin(), tolower); //tolower is in <cctype>, it converts char to lowercase
 		ret += line + " ";
 	}
     return ret;
@@ -54,7 +55,7 @@ int countOccurrences(const string& text, const string& feature) {
 	auto curr = text.begin();
 	auto end = text.end();
 	while (curr != end) {
-		auto found = std::search(curr, end, toFind.begin(), toFind.end());
+		auto found = std::search(curr, end, toFind.begin(), toFind.end()); //从第一个范围中里面找第二个范围，返回一个iterator
 		if (found == end) break;
 		
 		++count;
@@ -111,3 +112,23 @@ int main() {
 
 	return 0;
 }
+
+
+/* //How to read from and operate on a file
+
+std::ifstream inFile("exmaple.txt");
+
+if(!inFile){
+	std::cerr << "File open unsuccessful. ";
+	exit(1);
+}
+
+std::string inString;
+while(std::getline(inFile, inString)){
+	transform(inString.begin(),inString.end(),inString.begin(),tolower);
+	std::cout << inString << "\n" ;
+}
+
+inFile.close();
+
+*/
