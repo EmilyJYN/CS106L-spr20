@@ -56,6 +56,12 @@
         "xtree": "cpp",
         "xutility": "cpp",
         "fstream": "cpp",
-        "numeric": "cpp"
+        "numeric": "cpp",
+        "chrono": "cpp",
+        "list": "cpp",
+        "format": "cpp",
+        "xhash": "cpp",
+        "array": "cpp",
+        "forward_list": "cpp"
     }
 }

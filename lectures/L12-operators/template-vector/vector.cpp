@@ -4,8 +4,13 @@
 using namespace mycollection;
 // using namespace std;
 
-template <typename T>
-vector<T>::vector(size_t capacity) {
+/*
+在 .h 文件中，你已经在类定义的开始处写了 template <typename T>，因此在类定义的范围内，你不需要再为每个成员函数都重新指定模板参数列表。
+但在 .cpp 文件中，每个函数的实现都是在类定义的范围之外的，因此你需要为每个函数都重新指定模板参数列表。
+*/
+
+template <typename T> 
+vector<T>::vector(size_t capacity) { //红色的vector指的是class name，蓝色的vector是成员函数名（这里是constructor）
     _capacity = capacity;
     _size = 0;
     _elems = new T[_capacity];
@@ -18,7 +23,7 @@ vector<T>::~vector() {
 
 // Element Access
 template <typename T>
-typename vector<T>::value_type& vector<T>::at(size_t index) {
+typename vector<T>::value_type& vector<T>::at(size_t index) { //返回类型是vector<T>::value_type&，
     return const_cast<typename vector<T>::value_type&>(
             static_cast<const vector<T>*>(this)->at(index)
     );

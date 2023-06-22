@@ -70,8 +70,9 @@ namespace mycollection {
     };
 }
 
-using mycollection::vector;
+using mycollection::vector; //任何include了这个.h文件的文件都可以直接使用mycollection::vector
 
+//这一段也可以放在namesapce中
 // Operators (as non-member functions)
 template <typename T>
 vector<T> operator+(const vector<T>& lhs, const T& rhs) {
@@ -94,6 +95,6 @@ std::ostream& operator<<(std::ostream& out, const vector<T_>& rhs) {
 	return out;
 }
 
-#include "vector.cpp"
+#include "vector.cpp" //使用template的时候，编译器需要看到template完整的实例，因此这里需要include vector.cpp
 
 #endif /* BOUNDED_VECTOR */
