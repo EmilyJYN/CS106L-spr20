@@ -18,7 +18,9 @@ namespace mycollection {
         vector(size_t capacity = 10);
         ~vector();
         vector(const vector<T>& other);
-        vector<T>& operator=(const vector<T>& rhs);
+        vector<T>& operator=(const vector<T>& other);
+        vector(vector<T>&& other); //r-value reference 不加const
+        vector<T>& operator=(vector<T>&& other);
 
         // Element Access
         value_type& at(size_t index);

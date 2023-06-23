@@ -40,8 +40,28 @@ vector<T>& vector<T>::operator=(const vector<T>& other) {
 }
 
 // TODO: move constructor
+template <typename T>
+vector<T>::vector(vector<T>&& other) : 
+        _elems(std::move(other._elems)),  //copy the pointer
+        _capacity(std::move(other._capacity)),
+        _size(std::move(other._size))
+{
+    other._elems = nullptr;
+}
 
 // TODO: move assignment
+template <typename T>
+vector<T>& vector<T>::operator=(vector<T>&& other){
+    if(this != &other){
+        delete [] _elems;
+        _capacity = std::move(other._capacity);
+        _size = std::move(other._size);
+        _elems = std::move(other._elems); //copy the pointer
+        other._elems = nullptr; //set pointer of other to null
+    }
+    return *this;
+}
+
 
 // Element Access
 template <typename T>
