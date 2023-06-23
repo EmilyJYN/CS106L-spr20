@@ -25,15 +25,17 @@ vector<T>::vector(const vector<T>& other) :
     std::copy(other._elems, other._elems + other._size, _elems);
 }
 
+// v1 = v2;
+// v1.operator=(v2);
 template <typename T>
 vector<T>& vector<T>::operator=(const vector<T>& other) {
-    if (this == &other) return *this;
+    if (this == &other) return *this; //确保等号两边不是同一个vector
+    //不是constructor，不能用initialization list
     _capacity = other._capacity;
     _size = other._size;
-    T* new_elems = new T[other._capacity];
-    std::copy(other._elems, other._elems + other._size, new_elems);
-    delete [] _elems;
-    _elems = new_elems;
+    delete [] _elems; //清空自己原先的内容
+    _elems = new T[other._capacity]; //重新创建符合要求的 _elems，这里return的是指向该对象的指针
+    std::copy(other._elems, other._elems + other._size, _elems);
     return *this;
 }
 

@@ -63,7 +63,7 @@ namespace mycollection {
 
         void reserve(size_t n);
     private:
-        value_type* _elems;
+        value_type* _elems; //约定俗成的用法，加下划线来区分私有成员变量
         size_t _capacity;
         size_t _size;
 
