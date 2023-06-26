@@ -15,12 +15,12 @@ namespace mycollection {
         using const_iterator = const T*;
 
         // Special Member Functions
-        vector(size_t capacity = 10);
-        ~vector();
-        vector(const vector<T>& other);
-        vector<T>& operator=(const vector<T>& other);
-        vector(vector<T>&& other); //r-value reference 不加const
-        vector<T>& operator=(vector<T>&& other);
+        vector(size_t capacity = 10);                                    //constructor
+        ~vector();                                                       //destructor
+        vector(const vector<T>& other);                                  //copy constructor
+        vector<T>& operator=(const vector<T>& other);                    //copy assignment
+        vector(vector<T>&& other); //r-value reference 不加const         //move constructor
+        vector<T>& operator=(vector<T>&& other);                        //move assignment
 
         // Element Access
         value_type& at(size_t index);
